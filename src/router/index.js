@@ -49,113 +49,78 @@ export const constantRoutes = [
     redirect: '/dashboard',
     children: [{
       path: 'dashboard',
-      name: 'Dashboard',
+      name: '居家养老服务后台管理',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: { title: '居家养老服务后台管理', icon: 'dashboard' }
     }]
   },
-
+  // 用户管理
   {
-    path: '/example',
+    path: '/user',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
+    redirect: '/user/list',
+    name: '用户管理',
+    meta: { title: '用户管理', icon: 'el-icon-user-solid' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: 'list',
+        name: '用户管理',
+        component: () => import('@/views/user/index'),
+        meta: { title: '用户管理', icon: 'el-icon-user-solid' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'update/:id',
+        name: 'UserUpdate',
+        component: () => import('@/views/user/update'),
+        meta: { title: '编辑用户信息', noCache: true },
+        hidden: true
       }
     ]
   },
 
+  // 文章管理
   {
-    path: '/form',
+    path: '/article',
     component: Layout,
+    redirect: '/article/list',
+    name: '文章管理',
+    meta: { title: '文章管理', icon: 'el-icon-reading' },
     children: [
       {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
-      }
-    ]
-  },
-
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
+        path: 'list',
+        name: '文章管理',
+        component: () => import('@/views/article/index'),
+        meta: { title: '文章管理', icon: 'el-icon-reading' }
       },
       {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
+        path: 'update/:id',
+        name: 'ArticleUpdate',
+        component: () => import('@/views/article/update'),
+        meta: { title: '编辑文章信息', noCache: true },
+        hidden: true
       }
     ]
   },
-
+  // 商品管理
   {
-    path: 'external-link',
+    path: '/good',
     component: Layout,
+    redirect: '/good/list',
+    name: '商品管理',
+    meta: { title: '商品管理', icon: 'el-icon-shopping-bag-1' },
     children: [
       {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
+        path: 'list',
+        name: '商品管理',
+        component: () => import('@/views/good/index'),
+        meta: { title: '商品管理', icon: 'el-icon-shopping-bag-1' }
+      },
+      {
+        path: 'update/:id',
+        name: 'GoodUpdate',
+        component: () => import('@/views/good/update'),
+        meta: { title: '编辑商品信息', noCache: true },
+        hidden: true
       }
     ]
   },
@@ -173,7 +138,7 @@ const createRouter = () => new Router({
 const router = createRouter()
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
-export function resetRouter() {
+export function resetRouter () {
   const newRouter = createRouter()
   router.matcher = newRouter.matcher // reset router
 }
